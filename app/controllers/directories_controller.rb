@@ -1,5 +1,5 @@
 class DirectoriesController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :newest, :popular]
   
   # GET /directories
   # GET /directories.json
@@ -11,11 +11,29 @@ class DirectoriesController < ApplicationController
       format.json { render json: @directories }
     end
   end
+  
+  def newest
+    @directories = Directory.find(:all, :joins => :content, :order => "contents.created_at DESC")
+
+    respond_to do |format|
+      format.html {render "index" }
+      format.json { render json: @directories }
+    end
+  end
+  
+  def popular
+    @directories = Directory.find(:all, :order => "rating DESC")
+    respond_to do |format|
+      format.html {render "index" }
+      format.json { render json: @directories }
+    end
+  end
 
   # GET /directories/1
   # GET /directories/1.json
   def show
     @directory = Directory.find(params[:id])
+    @entries = Content.find(:all, :joins => :parent_mappings, :conditions => ["parent_id = ?", @directory.content.id])
 
     respond_to do |format|
       format.html # show.html.erb

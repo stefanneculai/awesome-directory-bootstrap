@@ -1,0 +1,8 @@
+<%= link_to "Newest Directories", directories_newest_url %> | 
+<%= link_to "Most Popular Directories", directories_popular_url %> | 
+<% if user_signed_in? %>
+	<%= link_to "Sign out", destroy_user_session_url, :method => :delete %> 
+<% else %>
+	<%= link_to "Sign in", new_user_session_url, :method => :get %> |
+	<%= link_to "Register", new_user_registration_url, :method => :get %>
+<% end %>

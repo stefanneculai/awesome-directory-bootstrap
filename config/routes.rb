@@ -20,6 +20,8 @@ AwesomeDirectory::Application.routes.draw do
 
   resources :tags
 
+  get "directories/newest"
+  get "directories/popular"
   resources :directories
 
   resources :contents

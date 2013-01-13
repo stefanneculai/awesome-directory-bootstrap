@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AwesomeDirectory</title>
+  <title>Awesome Directory</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+<%= render :partial => "/shared/nav" %>
 
 <%= yield %>
 
