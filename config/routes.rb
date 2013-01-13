@@ -1,4 +1,39 @@
 AwesomeDirectory::Application.routes.draw do
+  resources :mappings
+
+
+  resources :photos
+
+
+  resources :attachments
+
+
+  resources :comments
+
+
+  resources :entries
+
+
+  resources :hits
+
+
+  resources :likes
+
+
+  resources :categories
+
+
+  resources :tags
+
+
+  resources :directories
+
+
+  resources :contents
+
+
+  devise_for :users
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
