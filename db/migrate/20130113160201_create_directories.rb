@@ -3,8 +3,6 @@ class CreateDirectories < ActiveRecord::Migration
     create_table :directories do |t|
       t.string :name
       t.text :description
-
-      t.timestamps
     end
   end
 end

@@ -1,4 +1,6 @@
 class DirectoriesController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index, :show]
+  
   # GET /directories
   # GET /directories.json
   def index
@@ -43,7 +45,10 @@ class DirectoriesController < ApplicationController
     @directory = Directory.new(params[:directory])
 
     respond_to do |format|
-      if @directory.save
+      if @directory.valid?
+        content = get_content(@directory)
+        @directory.content = content
+        
         format.html { redirect_to @directory, notice: 'Directory was successfully created.' }
         format.json { render json: @directory, status: :created, location: @directory }
       else

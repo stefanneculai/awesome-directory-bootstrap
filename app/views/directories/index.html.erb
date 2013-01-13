@@ -4,6 +4,7 @@
   <tr>
     <th>Name</th>
     <th>Description</th>
+    <th>Created_at</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,9 +14,12 @@
   <tr>
     <td><%= directory.name %></td>
     <td><%= directory.description %></td>
+    <td><%= directory.content.created_at %></td>
     <td><%= link_to 'Show', directory %></td>
-    <td><%= link_to 'Edit', edit_directory_path(directory) %></td>
-    <td><%= link_to 'Destroy', directory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% if current_user and directory.content.user == current_user %>
+    	<td><%= link_to 'Edit', edit_directory_path(directory) %></td>
+    	<td><%= link_to 'Destroy', directory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

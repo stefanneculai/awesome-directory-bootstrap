@@ -1,36 +1,28 @@
 AwesomeDirectory::Application.routes.draw do
+  
+  root :to => "pages#home"
+  
   resources :mappings
-
 
   resources :photos
 
-
   resources :attachments
-
 
   resources :comments
 
-
   resources :entries
-
 
   resources :hits
 
-
   resources :likes
-
 
   resources :categories
 
-
   resources :tags
-
 
   resources :directories
 
-
   resources :contents
-
 
   devise_for :users
 

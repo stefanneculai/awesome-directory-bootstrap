@@ -24,36 +24,31 @@ ActiveRecord::Schema.define(:version => 20130113170609) do
   add_index "attachments", ["content_id"], :name => "index_attachments_on_content_id"
 
   create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string "name"
   end
 
   create_table "comments", :force => true do |t|
-    t.string   "body"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string "body"
   end
 
   create_table "contents", :force => true do |t|
     t.integer  "contentable_id"
     t.string   "contentable_type"
+    t.integer  "user_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
   end
 
+  add_index "contents", ["user_id"], :name => "index_contents_on_user_id"
+
   create_table "directories", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.string "name"
+    t.text   "description"
   end
 
   create_table "entries", :force => true do |t|
-    t.string   "title"
-    t.text     "body"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string "title"
+    t.text   "body"
   end
 
   create_table "hits", :force => true do |t|
@@ -75,14 +70,14 @@ ActiveRecord::Schema.define(:version => 20130113170609) do
   add_index "likes", ["user_id"], :name => "index_likes_on_user_id"
 
   create_table "mappings", :force => true do |t|
-    t.integer  "content1_id"
-    t.integer  "content2_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "parent_id"
+    t.integer  "child_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
-  add_index "mappings", ["content1_id"], :name => "index_mappings_on_content1_id"
-  add_index "mappings", ["content2_id"], :name => "index_mappings_on_content2_id"
+  add_index "mappings", ["child_id"], :name => "index_mappings_on_child_id"
+  add_index "mappings", ["parent_id"], :name => "index_mappings_on_parent_id"
 
   create_table "photos", :force => true do |t|
     t.datetime "created_at", :null => false
