@@ -1,5 +1,5 @@
 class Entry < ActiveRecord::Base
-  attr_accessible :body, :title
+  attr_accessible :body, :title, :rating
   
   has_one :content, :as => :contentable
   

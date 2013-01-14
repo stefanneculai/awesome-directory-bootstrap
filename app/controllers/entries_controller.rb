@@ -1,4 +1,6 @@
 class EntriesController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index, :show]
+  
   # GET /entries
   # GET /entries.json
   def index

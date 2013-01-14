@@ -10,6 +10,6 @@
   <%= @entry.body %>
 </p>
 
-
-<%= link_to 'Edit', edit_entry_path(@entry) %> |
-<%= link_to 'Back', entries_path %>
+<% if user_signed_in? and @directory.content.user == current_user %>
+	<%= link_to 'Edit', edit_entry_path(@entry) %>
+<% end %>

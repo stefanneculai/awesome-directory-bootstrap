@@ -10,7 +10,7 @@ AwesomeDirectory::Application.routes.draw do
 
   resources :comments
 
-  resources :entries
+  resources :entries, :except => [:index]
 
   resources :hits
 

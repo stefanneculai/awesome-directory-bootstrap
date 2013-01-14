@@ -22,7 +22,7 @@ class DirectoriesController < ApplicationController
   end
   
   def popular
-    @directories = Directory.find(:all, :order => "rating DESC")
+    @directories = "SELECT * FROM popular_directories;"
     respond_to do |format|
       format.html {render "index" }
       format.json { render json: @directories }
@@ -33,7 +33,7 @@ class DirectoriesController < ApplicationController
   # GET /directories/1.json
   def show
     @directory = Directory.find(params[:id])
-    @entries = Content.find(:all, :joins => :parent_mappings, :conditions => ["parent_id = ?", @directory.content.id])
+    @entries = Entry.joins(:content => :parent_mappings).find(:all, :conditions => ["parent_id = ?", @directory.content.id])
 
     respond_to do |format|
       format.html # show.html.erb

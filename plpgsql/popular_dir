@@ -1,0 +1,8 @@
+CREATE OR REPLACE FUNCTION popular_directories()
+	RETURNS SETOF directories AS
+	$$
+	BEGIN
+		RETURN QUERY EXECUTE 'SELECT * FROM directories';
+	END;
+	$$
+	LANGUAGE plpgsql;

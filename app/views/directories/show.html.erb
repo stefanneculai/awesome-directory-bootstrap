@@ -20,6 +20,10 @@
   <%= @directory.description %>
 </p>
 
+<% if user_signed_in? and @directory.content.user == current_user %>
+	<%= link_to 'Edit Directory Info', edit_directory_path(@directory) %> | <%= link_to 'New Entry', new_entry_path %>
+<% end %>	 
 
-<%= link_to 'Edit', edit_directory_path(@directory) %> |
+<%= render "entries/data" %>
+
 <%= link_to 'Back', directories_path %>

@@ -47,8 +47,9 @@ ActiveRecord::Schema.define(:version => 20130113170609) do
   end
 
   create_table "entries", :force => true do |t|
-    t.string "title"
-    t.text   "body"
+    t.string  "title"
+    t.text    "body"
+    t.integer "rating"
   end
 
   create_table "hits", :force => true do |t|
