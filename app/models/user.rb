@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
   
   has_many :likes
   has_many :contents
+  has_many :ratings
 end

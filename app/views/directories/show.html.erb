@@ -21,7 +21,7 @@
 </p>
 
 <% if user_signed_in? and @directory.content.user == current_user %>
-	<%= link_to 'Edit Directory Info', edit_directory_path(@directory) %> | <%= link_to 'New Entry', new_entry_path %>
+	<%= link_to 'Edit Directory Info', edit_directory_path(@directory) %> | <%= link_to 'New Entry', "/entries/new/#{@directory.id}" %>
 <% end %>	 
 
 <%= render "entries/data" %>

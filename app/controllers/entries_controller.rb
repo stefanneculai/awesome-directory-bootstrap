@@ -26,6 +26,7 @@ class EntriesController < ApplicationController
   # GET /entries/new
   # GET /entries/new.json
   def new
+    @directory_id = params[:dir]
     @entry = Entry.new
 
     respond_to do |format|
@@ -42,10 +43,15 @@ class EntriesController < ApplicationController
   # POST /entries
   # POST /entries.json
   def create
+    @directory_id = params[:dir]
     @entry = Entry.new(params[:entry])
 
     respond_to do |format|
-      if @entry.save
+      if @entry.valid?
+        content = get_content(@entry)
+        @entry.content = content
+        Mapping.create(:parent => Directory.find_by_id(@directory_id).content, :child => content)
+
         format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
         format.json { render json: @entry, status: :created, location: @entry }
       else

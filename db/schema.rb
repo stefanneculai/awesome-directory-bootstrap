@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130113170609) do
+ActiveRecord::Schema.define(:version => 20130114162433) do
 
   create_table "attachments", :force => true do |t|
     t.integer  "attachable_id"
@@ -41,15 +41,18 @@ ActiveRecord::Schema.define(:version => 20130113170609) do
 
   add_index "contents", ["user_id"], :name => "index_contents_on_user_id"
 
+  create_table "dir_rating", :id => false, :force => true do |t|
+    t.integer "sum", :limit => 8
+  end
+
   create_table "directories", :force => true do |t|
     t.string "name"
     t.text   "description"
   end
 
   create_table "entries", :force => true do |t|
-    t.string  "title"
-    t.text    "body"
-    t.integer "rating"
+    t.string "title"
+    t.text   "body"
   end
 
   create_table "hits", :force => true do |t|
@@ -84,6 +87,17 @@ ActiveRecord::Schema.define(:version => 20130113170609) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "ratings", :force => true do |t|
+    t.integer  "rate"
+    t.integer  "user_id"
+    t.integer  "content_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "ratings", ["content_id"], :name => "index_ratings_on_content_id"
+  add_index "ratings", ["user_id"], :name => "index_ratings_on_user_id"
 
   create_table "tags", :force => true do |t|
     t.string   "name"

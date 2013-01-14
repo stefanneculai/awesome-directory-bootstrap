@@ -20,9 +20,8 @@ namespace :db do
         e = Entry.new
         e.title = Populator.words(1..3).capitalize
         e.body = Faker::Lorem.sentence(20)
-        e.rating = Random.new.rand(1..5)
-        e.save
         eContent = Content.create(:contentable => e, :user => users[i%2])
+        Rating.create(:rate => Random.new.rand(1..5), :user => users[i%3], :content => eContent)
         Mapping.create(:parent => dContent, :child => eContent)
       end
     end

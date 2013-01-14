@@ -10,6 +10,21 @@
   <%= @entry.body %>
 </p>
 
-<% if user_signed_in? and @directory.content.user == current_user %>
+<p>
+  <b>Rating:</b>
+  <span id="rate-span"><%=  @entry.content.rating %></span>
+</p>
+
+<% if user_signed_in? and @entry.content.user == current_user %>
 	<%= link_to 'Edit', edit_entry_path(@entry) %>
 <% end %>
+
+<% if user_signed_in? and !@entry.content.has_rated(current_user) %>
+    <% @rating = Rating.new %>
+    <% @content = @entry.content %>
+    <%= render :partial => "ratings/form" %>
+<% else %>
+    You have already gave a rate.<br/>
+<% end %>
+
+<%= link_to 'Back', directory_path(@entry.content.parent_mappings[0].parent.contentable) %>

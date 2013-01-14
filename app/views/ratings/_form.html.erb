@@ -1,0 +1,19 @@
+<%= form_tag("/ratings/new/#{@content.id}", :remote => true, :id => "form-#{@content.id}") do %>
+  <% if @rating.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this rating from being saved:</h2>
+
+      <ul>
+      <% @rating.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= label_tag "Like it?" %>
+    <%= select_tag "rate", options_for_select({"1" => "1", "2" => "2", "3" => "3", "4" => "4", "5" => "5"}, "5") %>
+    <%= submit_tag "Rate" %>
+  </div>
+<% end %>

@@ -1,5 +1,8 @@
 AwesomeDirectory::Application.routes.draw do
   
+  #resources :ratings
+  post "/ratings/new/:content_id" => "ratings#create"
+
   root :to => "pages#home"
   
   resources :mappings
@@ -10,7 +13,8 @@ AwesomeDirectory::Application.routes.draw do
 
   resources :comments
 
-  resources :entries, :except => [:index]
+  resources :entries, :except => [:index, :new]
+  get "/entries/new/:dir" => "entries#new"
 
   resources :hits
 
@@ -20,8 +24,8 @@ AwesomeDirectory::Application.routes.draw do
 
   resources :tags
 
-  get "directories/newest"
-  get "directories/popular"
+  get "/directories/newest"
+  get "/directories/popular"
   resources :directories
 
   resources :contents
