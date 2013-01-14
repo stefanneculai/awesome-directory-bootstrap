@@ -8,9 +8,15 @@
 </head>
 <body>
 
-<%= render :partial => "/shared/nav" %>
+<div id="wrapper">
+  <%= render :partial => "/shared/nav" %>
 
-<%= yield %>
+  <div id="content">
+    <%= yield %>
+  </div>
+
+  <%= render :partial => "/shared/foot" %>
+</div>
 
 </body>
 </html>

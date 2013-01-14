@@ -4,6 +4,7 @@ class DirectoriesController < ApplicationController
   # GET /directories
   # GET /directories.json
   def index
+    @page_title = "All Directories"
     @directories = Directory.all
 
     respond_to do |format|
@@ -13,6 +14,7 @@ class DirectoriesController < ApplicationController
   end
   
   def newest
+    @page_title = "Newest Directories"
     @directories = Directory.all(:joins => :content, :order => "contents.created_at DESC")
 
     respond_to do |format|
@@ -22,7 +24,18 @@ class DirectoriesController < ApplicationController
   end
   
   def popular
+    @page_title = "Popular Directories"
     @directories = Directory.find_by_sql "SELECT * FROM popular_directories();"
+
+    respond_to do |format|
+      format.html {render "index" }
+      format.json { render json: @directories }
+    end
+  end
+
+  def my
+    @page_title = "My Directories"
+    @directories = Directory.all(:joins => :content, conditions: ["contents.user_id = ?", current_user.id])
 
     respond_to do |format|
       format.html {render "index" }

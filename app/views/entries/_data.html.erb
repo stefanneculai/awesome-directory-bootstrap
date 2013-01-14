@@ -15,7 +15,7 @@
     <td><%= entry.body %></td>
     <td><%= entry.content.rating %></td>
     <td><%= link_to 'Show', entry %></td>
-    <% if user_signed_in? and @entry.content.user == current_user %>
+    <% if user_signed_in? and entry.content.user == current_user %>
         <td><%= link_to 'Edit', edit_entry_path(entry) %></td>
         <td><%= link_to 'Destroy', entry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>

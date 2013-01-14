@@ -1,9 +1,6 @@
-<p id="notice"><%= notice %></p>
+<h1><%= @directory.name %></h1>
 
-<p>
-  <b>Name:</b>
-  <%= @directory.name %>
-</p>
+<p id="notice"><%= notice %></p>
 
 <p>
   <b>Created at:</b>
@@ -16,6 +13,11 @@
 </p>
 
 <p>
+  <b>Rating:</b>
+  <%= @directory.rating %>
+</p>
+
+<p>
   <b>Description:</b>
   <%= @directory.description %>
 </p>
@@ -24,6 +26,6 @@
 	<%= link_to 'Edit Directory Info', edit_directory_path(@directory) %> | <%= link_to 'New Entry', "/entries/new/#{@directory.id}" %>
 <% end %>	 
 
-<%= render "entries/data" %>
+<%= render "/entries/data" %>
 
 <%= link_to 'Back', directories_path %>
