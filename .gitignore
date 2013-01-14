@@ -20,3 +20,5 @@
 *.swo
 .project
 .settings
+
+.idea/*
